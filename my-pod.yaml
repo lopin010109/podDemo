@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod-2
+  labels:
+    app: webserver
+    tier: backend   
+  annotations:
+    version: latest
+    release_date: 2019/5/27
+    contact: joshhsieh@gamasys.com.tw
+spec:
+  containers:
+  - name: pod-demo
+    image: joshhsieh/docker-demo
+    ports:
+    - containerPort: 3000

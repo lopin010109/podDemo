@@ -1,0 +1,43 @@
+# test-ingress-deployment.yaml
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: red-nginx
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: red-nginx
+  template:
+    metadata:
+      labels:
+        app: red-nginx
+    spec:
+      containers:
+      - name: nginx
+        image: joshhsieh/docker-demo
+        ports:
+        - containerPort: 80
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: green-nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: green-nginx
+  template:
+    metadata:
+      labels:
+        app: green-nginx
+    spec:
+      containers:
+      - name: nginx
+        image: joshhsieh/docker-demo
+        ports:
+        - containerPort: 80

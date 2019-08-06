@@ -1,0 +1,21 @@
+# test-ingress.yaml
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: test-ingress
+spec:
+  rules:
+  - host: green.mytest.com
+    http:
+      paths:
+      - backend:
+          serviceName: green-service
+          servicePort: 80
+  - host: red.mytest.com
+    http:
+      paths:
+      - backend:
+          serviceName: red-service
+          servicePort: 80

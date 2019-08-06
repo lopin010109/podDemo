@@ -1,0 +1,47 @@
+# yaml 檔案規則:
+# 主要架構為 map 和 list 組成
+# #字符 => 註解
+# --- => 同一個yaml檔案中可以區隔不同物件設定
+
+# map => 由 key-value 組成
+# ---
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: web
+#   labels:
+#     app: web
+# ---
+# apiVersion: v1 => 指定使用 v1 版本的 api
+# kind: Pod => 指定類型為 Pod (Deployment, service, secret 等等不同類型)
+# metadata 包含 name 和 labels
+# name: web => 表示指定 Pod 名稱為 web 
+# labels: web => 幫 Pod 打上 app:web 得標籤
+
+# list => 由 - 開頭並加入一個空格
+# --- 
+# spec:
+#   containers:
+#   - name: frontend
+#     image: nginx
+#     ports:
+#     - containerPort: 80
+# ---
+# spec: => 規格描述
+# containers: => 容器描述  map底下都是list成員(name: 容器命名, image: 使用映像檔, ports)
+# ports: map底下都是list成員(containerPort: 指定使用 80 port)
+
+# test-pod.yaml
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod-web
+  labels:
+    app: web
+spec:
+  containers:
+  - name: test-container-frontend
+    image: nginx
+    ports:
+    - containerPort: 80
